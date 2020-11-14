@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Book E-Shop">
+  <meta name="author" content="Ivan Holikov">
+  <meta name="generator" content="Jekyll v4.1.1">
+  <meta name="theme-color" content="#563d7c">
+  <title>BookShop - {% block title %}{% endblock title  %}</title>
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/jumbotron/">
+  <!-- Bootstrap core CSS -->
+  <link href="https://getbootstrap.com/docs/4.5/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+        crossorigin="anonymous">
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/base.css' %}" rel="stylesheet">
+  {% block additional_css %}{% endblock additional_css %}
+</head>
+<body>
+  <header>
+    {% include 'header.html' %}
+  </header>
+  <main role="main">
+    {% block content %}{% endblock content %}
+  </main>
+  <footer class="container">
+    {% include 'footer.html' %}
+  </footer>
+  <script src="http://code.jquery.com/jquery-3.4.1.js"
+          integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+          crossorigin="anonymous"></script>
+  <script src="https://getbootstrap.com/docs/4.5/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+          crossorigin="anonymous">
+  </script>
+</body>
+</html>
