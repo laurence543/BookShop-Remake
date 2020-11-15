@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block title %}Реєстрація{% endblock title %}
+{% block additional_css %}
+<link href="{% static 'css/access/access_base.css' %}" rel="stylesheet">
+{% endblock additional_css %}
+
+{% block content %}
+    <div class="container">
+        <h2>Реєстрація</h2>
+        <hr>
+        <form action="#" method="post">
+            {% csrf_token %}
+            <table>
+            </table>
+            <p>
+                <input type="submit" value="Надіслати">
+                &nbsp;
+                <input type="reset" value="Очистити">
+            </p>
+        </form>
+    </div>
+{% endblock content %}

@@ -130,3 +130,6 @@ dmypy.json
 
 # idea folder (PyCharm)
 .idea/
+
+#img folder
+BookShopDjango/static/img/

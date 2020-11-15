@@ -27,3 +27,6 @@ body {
     color: navy;
     background: whitesmoke;
 }
+hr {
+  border-color: gray;
+}

@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'common_tabs.apps.CommonTabsConfig',
     'books.apps.BooksConfig',
-    'access.apps.AccessConfig'
+    'access.apps.AccessConfig',
     'corsheaders',
 ]
 
