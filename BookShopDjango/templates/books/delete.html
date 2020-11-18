@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Видалення товару{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <h2>Видалення товару</h2>
+        <hr style="border-color: gray">
+        <h4>{{ book.title }}</h4>
+        <form action="#" method="post">
+            {% csrf_token %}
+            <p>
+                <input type="submit" value="Підтвердіть видалення">
+                <input type="button" onclick="history.back();" value="Відміна"/>
+            </p>
+        </form>
+    </div>
+{% endblock content %}

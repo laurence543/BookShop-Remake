@@ -133,3 +133,6 @@ dmypy.json
 
 #img folder
 BookShopDjango/static/img/
+BookShopDjango/media/
+
+migrations

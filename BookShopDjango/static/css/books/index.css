@@ -1,0 +1,31 @@
+.book_header {
+    background: #141433;
+    color: lightgrey;
+}
+.book_label {
+    background: #12222F;
+    color: lightgrey;
+}
+.book_info {
+    background: #3d3d4e;
+    color: lightgrey;
+}
+.want_td {
+    background: #9393A6;
+}
+.want {
+    padding: 1% 5%;
+    border-radius: 3%;
+    background: #201331;
+    color: lightgrey;
+}
+.sold_out {
+    background: #201331;
+    color: lightgrey;
+}
+.technical_buttons {
+    padding: 2px 10px;
+    border-radius: 3px;
+    background: darkslateblue;
+    color: lightgrey;
+}

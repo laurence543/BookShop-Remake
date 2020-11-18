@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Профіль{% endblock title %}
+{% block additional_css %}
+<link href="{% static 'css/access/access_base.css' %}" rel="stylesheet">
+{% endblock additional_css %}
+
+{% block content %}
+    <div class="container">
+        <h2>Профіль користувача - {{ user }}</h2>
+        <hr style="border-color: gray">
+    </div>
+{% endblock content %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Додавання книги{% endblock title %}
+
+{% block additional_css %}
+<link href="{% static 'css/books/create.css' %}" rel="stylesheet">
+{% endblock additional_css %}
+
+{% block content %}
+    <div class="container">
+        <h2>Додавання книги</h2>
+        <hr style="border-color: gray">
+        <form action="#" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <ul class="form">
+                {{ form }}
+            </ul>
+            <p style="margin-top: 15px">
+                <input type="submit" value="Додати">
+                &nbsp;
+                <input type="reset" value="Очистити">
+            </p>
+        </form>
+    </div>
+    <style>
+        .input {
+            width: 95%;
+        }
+        .file {
+            margin-top: 15px;
+        }
+        .form {
+            font: 13pt "Trebuchet MS";
+        }
+    </style>
+{% endblock content %}

@@ -6,34 +6,43 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="/">Головна</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="/books">Каталог</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="/about">Про нас</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="/contacts">Контакти</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Пошук" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Пошук</button>
-    </form>
+
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/access/entry">
-          Вхід
+      <li class="nav-item active">
+        <a class="nav-link"
+           style="margin-right: 50px; color: khaki">
+          Привіт, {{ user }}!
+          <span class="sr-only">(current)</span>
         </a>
       </li>
+      {% if user == 'Гість' %}
       <li class="nav-item">
-        <a class="nav-link" href="/access/registration">
-          Реєстрація
-        </a>
+        <a class="nav-link" href="/access/entry">Вхід</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/access/registration">Реєстрація</a>
+      </li>
+      {% else %}
+      <li class="nav-item active">
+        <a class="nav-link" href="/access/exit_">Вихід</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/access/profile">Профіль</a>
+      </li>
+      {% endif %}
     </ul>
   </div>
 </nav>

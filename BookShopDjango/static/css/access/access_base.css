@@ -1,6 +1,12 @@
-.container {
-  padding-top: 30px;
-}
 p {
   margin-top: 15px;
+}
+table {
+  background: lightgrey; /* Цвет фона */
+  width: 21rem; /* Ширина таблицы */
+  border-radius: 10px;
+  margin: auto; /* Выравниваем таблицу по центру окна  */
+}
+input {
+  border-radius: 10px;
 }
