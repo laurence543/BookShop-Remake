@@ -1,34 +1,24 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.decorators import api_view
-from rest_framework import status
 from django.core.paginator import Paginator
 from user import get_user
 from .models import Book, Publisher, Language
 from .forms import CreateForm, EditForm, EditImageForm
 from django.core.files.storage import FileSystemStorage
 from time import strftime, localtime
-from books.models import Book
-from books.serializers import BookSerializer
-from rest_framework.response import Response
 
 
 # Create your views here.
-@csrf_exempt
-@api_view(['GET', 'POST'])
 def index(request):
-    if request.method == 'GET':
-        books = Book.objects.all()
-        books_serializer = BookSerializer(books, many=True)
-        return Response(books_serializer.data)
+    user = get_user(request)
+    books_x = Book.objects.all()
+    paginator = Paginator(books_x, 2)
+    page = request.GET.get('page')
+    books = paginator.get_page(page)
+    context = {'user': user,
+               'books': books,
+               }
 
-    elif request.method == 'POST':
-        book_serializer = BookSerializer(data=request.data)
-        if book_serializer.is_valid():
-            book_serializer.save()
-            return Response(book_serializer.data, status=status.HTTP_201_CREATED)
-        return Response(book_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    return render(request, 'books/index.html', context)
 
 
 def create(request):
@@ -183,22 +173,10 @@ def edit_image(request, id):
         return render(request, 'books/edit_image.html', context)
 
 
-@csrf_exempt
-@api_view(['GET', 'PUT', 'DELETE'])
 def single(request, id):
-    try:
-        book = Book.objects.get(id=id)
-    except Book.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-    if request.method == 'GET':
-        book_serializer = BookSerializer(book)
-        return Response(book_serializer.data)
-    elif request.method == 'PUT':
-        book_serializer = BookSerializer(book, data=request.data)
-        if book_serializer.is_valid():
-            book_serializer.save()
-            return Response(book_serializer.data)
-        return Response(book_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    elif request.method == 'DELETE':
-        book.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    user = get_user(request)
+    book = Book.objects.get(id=id)
+    context = {'user': user,
+               'book': book,
+               }
+    return render(request, 'books/single.html', context)

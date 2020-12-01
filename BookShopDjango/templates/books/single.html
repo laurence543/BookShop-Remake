@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}dddКаталогddd{% endblock title %}
+
+{% block additional_css %}
+<link href="{% static 'css/books/single.css' %}" rel="stylesheet">
+{% endblock additional_css %}
+
+{% block content %}
+<div class="container">
+        <h2>{{ book.title }}</h2>
+        <hr style="border-color: gray">
+            <table id="books" border="1" width="100%">
+                <tr>
+                    <td rowspan="7" width="30%">
+                        <img src="{{ book.image }}" width="100%">
+                    </td>
+                    <td class="book_label">
+                        <h5>Опис:</h5>
+                    </td>
+                    <td class="book_info">
+                        <h5>{{ book.description }}</h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="book_label">
+                        <h5>Мова:</h5>
+                    </td>
+                    <td class="book_info">
+                        <h5>{{ book.language }}</h5>
+                    </td>
+                </tr>
+                <tr>
+                  <td class="book_label">
+                        <h5>Видавництво:</h5>
+                    </td>
+                    <td class="book_info">
+                        <h5>{{ book.publisher }}</h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="book_label">
+                        <h5>Автор:</h5>
+                    </td>
+                    <td class="book_info">
+                        <h5>{{ book.author }}</h5>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="book_label">
+                        <h5>Рік видання:</h5>
+                    </td>
+                    <td class="book_info">
+                        <h5>{{ book.publish_year }}</h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="book_label">
+                        <h5>Залишилось на складі:</h5>
+                    </td>
+                    <td class="book_info">
+                        <h5>{{ book.stock }}</h5>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="book_label">
+                        <h5>Ціна:</h5>
+                    </td>
+                    <td class="book_info">
+                        <h5>{{ book.price }}</h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="want_td">
+                        {% if book.stock > 0 %}
+                        <button type="button"
+                                class="want"
+                                data-toggle="modal"
+                                data-target="#Modal">
+                            <h3>Хочу</h3>
+                        </button>
+                        {% else%}
+                        <h3 class="sold_out">Товара нема в наявності</h3>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% if user != 'Гість' %}
+                    <tr>
+                    <td colspan="3">
+                      |
+                      <a href="delete/{{ book.id }}" class="technical_buttons">Видалити товар</a>
+                      |
+                    </td>
+                    <td colspan="2">
+                      |
+                      <a href="edit/{{ book.id }}" class="technical_buttons">Редагувати товар</a>
+                      |
+                    </td>
+
+                  </tr>
+                {% endif %}
+            </table>
+
+<!-- Modal -->
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel">Тоді мерщій дзвоніть!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h4>+380 61 846 73 71</h4>
+        <br>
+        <h4>+380 71 846 73 71</h4>
+        <br>
+        <h4>+380 81 846 73 71</h4>
+        <br>
+        <h5>або пишіть нам:</h5>
+        <br>
+        <h4>bookshop_admin@gmail.com</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ОК</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+{% endblock content %}
+
