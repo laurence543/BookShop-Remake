@@ -8,7 +8,6 @@ class RegForm(forms.Form):
     pass2 = forms.CharField(widget=forms.PasswordInput(),
                             label='Повторіть пароль:')
     email = forms.EmailField(label='E-Mail:')
-    token = forms.CharField(label='Токен:')
 
 
 class EntryForm(forms.Form):
