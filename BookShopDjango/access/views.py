@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import RegForm, EntryForm
-from .models import User, Token
+from .models import User
 from hashlib import md5
 from time import strftime, localtime
 from user import get_user
@@ -56,7 +56,6 @@ def reg(request):
         pass1 = request.POST.get('pass1')
         pass2 = request.POST.get('pass2')
         email = request.POST.get('email')
-        token = request.POST.get('token')
 
         hash_code = md5(pass1.encode())
         password = hash_code.hexdigest()
@@ -64,18 +63,13 @@ def reg(request):
         status = 'usual'
 
         # Перевірка занятості логіна/пароля та реєстрація:
-        temp_token = Token.objects.filter(token=token)
         select = User.objects.filter(login=login)
-        t = len(temp_token)
         n = len(select)
         if n > 0:
             message = 'Логін зайнятий!'
             color = 'red'
         elif pass1 != pass2:
             message = 'Паролі не співпадають!'
-            color = 'red'
-        elif t == 0:
-            message = 'Неправильний токен!'
             color = 'red'
         else:
             user = User(
