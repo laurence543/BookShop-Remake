@@ -10,7 +10,7 @@ from .forms import CreateForm, EditForm, EditImageForm
 from django.core.files.storage import FileSystemStorage
 from time import strftime, localtime
 from books.models import Book
-from books.serializers import BookSerializer
+from books.serializers import BookSerializer, BookListSerializer
 from rest_framework.response import Response
 
 
@@ -20,7 +20,8 @@ from rest_framework.response import Response
 def index(request):
     if request.method == 'GET':
         books = Book.objects.all()
-        books_serializer = BookSerializer(books, many=True)
+        # books_serializer = BookSerializer(books, many=True)
+        books_serializer = BookListSerializer(books, many=True)
         return Response(books_serializer.data)
 
     elif request.method == 'POST':
