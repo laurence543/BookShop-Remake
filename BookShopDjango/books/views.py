@@ -10,7 +10,7 @@ from .forms import CreateForm, EditForm, EditImageForm
 from django.core.files.storage import FileSystemStorage
 from time import strftime, localtime
 from books.models import Book
-from books.serializers import BookSerializer, BookListSerializer
+from books.serializers import BookWithoutPublisherSerializer, BookListSerializer, PublisherSerializer
 from rest_framework.response import Response
 
 
@@ -19,17 +19,19 @@ from rest_framework.response import Response
 @api_view(['GET', 'POST'])
 def index(request):
     if request.method == 'GET':
-        books = Book.objects.all()
+        ## books = Book.objects.all()
+        publishers = Publisher.objects.all()
         # books_serializer = BookSerializer(books, many=True)
-        books_serializer = BookListSerializer(books, many=True)
-        return Response(books_serializer.data)
+        ## books_serializer = BookListSerializer(books, many=True)
+        publisher_serializer = PublisherSerializer(publishers, many=True)
+        return Response(publisher_serializer.data)
 
     elif request.method == 'POST':
-        book_serializer = BookSerializer(data=request.data)
-        if book_serializer.is_valid():
-            book_serializer.save()
-            return Response(book_serializer.data, status=status.HTTP_201_CREATED)
-        return Response(book_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        publisher_serializer = PublisherSerializer(data=request.data)
+        if publisher_serializer.is_valid():
+            publisher_serializer.save()
+            return Response(publisher_serializer.data, status=status.HTTP_201_CREATED)
+        return Response(publisher_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 def create(request):
