@@ -3,12 +3,18 @@ from access.models import User, Order, Order_content
 
 
 class UserSerializer(serializers.ModelSerializer):
-    pass
+    class Meta:
+        model = User
+        fields = "__all__"
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    pass
+    class Meta:
+        model = Order
+        fields = "__all__"
 
 
 class Order_ContentSerializer(serializers.ModelSerializer):
-    pass
+    class Meta:
+        model = Order_content
+        fields = "__all__"
