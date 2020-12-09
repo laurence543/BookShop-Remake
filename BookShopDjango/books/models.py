@@ -5,17 +5,9 @@ from django.db import models
 class Publisher(models.Model):
 
     def __str__(self):
-        return self.publisher_title
+        return self.publisher
 
-    publisher_title = models.CharField(max_length=100, default="undefined")
-
-
-class Language(models.Model):
-
-    def __str__(self):
-        return self.language
-
-    language = models.CharField(max_length=50)
+    publisher = models.CharField(max_length=100, default="undefined")
 
 
 class Book(models.Model):
@@ -23,8 +15,7 @@ class Book(models.Model):
     author = models.CharField(max_length=250)
     description = models.CharField(max_length=1024)
     publish_year = models.IntegerField()
-    publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
+    publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE, related_name="book_publisher")
     image = models.CharField(max_length=100, default=False)
     stock = models.IntegerField()
     price = models.IntegerField()
-    language = models.ForeignKey(Language, on_delete=models.CASCADE)

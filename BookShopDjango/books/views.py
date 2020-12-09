@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from django.core.paginator import Paginator
 from user import get_user
-from .models import Book, Publisher, Language
+from .models import Book, Publisher
 from .forms import CreateForm, EditForm, EditImageForm
 from django.core.files.storage import FileSystemStorage
 from time import strftime, localtime
@@ -43,7 +43,6 @@ def create(request):
         publisher = request.POST.get('publisher')
         stock = request.POST.get('stock')
         price = request.POST.get('price')
-        language = request.POST.get('language')
 
         image = request.FILES['image']
         fs = FileSystemStorage()
@@ -59,7 +58,6 @@ def create(request):
             stock=stock,
             publisher=Publisher.objects.get(publisher_title=publisher),
             price=price,
-            language=Language.objects.get(language=language),
         )
         book.save()
 
@@ -113,7 +111,6 @@ def edit(request, id):
         publisher = request.POST.get('publisher')
         stock = request.POST.get('stock')
         price = request.POST.get('price')
-        language = request.POST.get('language')
 
         book = Book(
             id=id,
@@ -124,7 +121,6 @@ def edit(request, id):
             stock=stock,
             publisher=Publisher.objects.get(publisher_title=publisher),
             price=price,
-            language=Language.objects.get(language=language),
         )
         book.save()
 
@@ -141,7 +137,6 @@ def edit(request, id):
                                  'publisher': book.publisher,
                                  'stock': book.stock,
                                  'price': book.price,
-                                 'language': book.language,
                                  'image': book.image,
                                  })
         context = {

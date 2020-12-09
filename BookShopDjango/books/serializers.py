@@ -1,11 +1,5 @@
 from rest_framework import serializers
-from books.models import Book, Publisher, Language
-
-
-class LanguageSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Language
-        fields = "__all__"
+from books.models import Book, Publisher
 
 
 class PublisherSerializer(serializers.ModelSerializer):
@@ -15,7 +9,6 @@ class PublisherSerializer(serializers.ModelSerializer):
 
 
 class BookSerializer(serializers.ModelSerializer):
-    language = LanguageSerializer()
     publisher = PublisherSerializer()
 
     class Meta:
@@ -26,20 +19,14 @@ class BookSerializer(serializers.ModelSerializer):
                   'publish_year',
                   'stock',
                   'price',
-                  'language',
                   'publisher',
                   'image'
                   )
 
     def create(self, validated_data):
-        language_data = validated_data.pop('language')
         publisher_data = validated_data.pop('publisher')
 
         instance = super().create(validated_data)
-
-        serializer = LanguageSerializer(language_data, context=self.context, many=True)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
 
         serializer2 = PublisherSerializer(publisher_data, context=self.context, many=True)
         serializer2.is_valid(raise_exception=True)
@@ -52,8 +39,7 @@ class BookSerializer(serializers.ModelSerializer):
 
 
 class BookListSerializer(serializers.ModelSerializer):
-    language = serializers.CharField(source="language.language")
-    publisher = serializers.CharField(source="publisher.publisher_title")
+    publisher = serializers.CharField(source="publisher.publisher")
 
     class Meta:
         model = Book
@@ -63,7 +49,6 @@ class BookListSerializer(serializers.ModelSerializer):
                   'publish_year',
                   'stock',
                   'price',
-                  'language',
                   'publisher',
                   'image'
                   )

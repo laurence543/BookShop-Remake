@@ -9,7 +9,6 @@ class CreateForm(forms.Form):
     publisher = forms.CharField(label='Видавництво', widget=forms.TextInput(attrs={'class': 'input'}))
     stock = forms.CharField(label='Кількість на складі', widget=forms.NumberInput(attrs={'class': 'input'}))
     price = forms.CharField(label='Ціна', widget=forms.NumberInput(attrs={'class': 'input'}))
-    language = forms.CharField(label='Мова', widget=forms.TextInput(attrs={'class': 'input'}))
     image = forms.FileField(label='Картинка', widget=forms.FileInput(attrs={'class': 'file'}))
 
 
@@ -21,7 +20,6 @@ class EditForm(forms.Form):
     publisher = forms.CharField(label='Видавництво', widget=forms.TextInput(attrs={'class': 'input'}))
     stock = forms.CharField(label='Кількість на складі', widget=forms.NumberInput(attrs={'class': 'input'}))
     price = forms.CharField(label='Ціна', widget=forms.NumberInput(attrs={'class': 'input'}))
-    language = forms.CharField(label='Мова', widget=forms.TextInput(attrs={'class': 'input'}))
 
 
 class EditImageForm(forms.Form):
