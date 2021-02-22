@@ -12,9 +12,16 @@ from time import strftime, localtime
 from books.models import Book
 from books.serializers import BookWithoutPublisherSerializer, BookListSerializer, PublisherSerializer
 from rest_framework.response import Response
+from rest_framework import generics
 
 
 # Create your views here.
+class BookAPIView(generics.ListAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookListSerializer
+    #template_name = "books/index.html"
+
+
 @csrf_exempt
 @api_view(['GET', 'POST'])
 def index(request):
