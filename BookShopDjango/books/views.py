@@ -19,7 +19,12 @@ from rest_framework import generics
 class BookAPIView(generics.ListAPIView):
     queryset = Book.objects.all()
     serializer_class = BookListSerializer
-    #template_name = "books/index.html"
+    template_name = "books/index.html"
+
+
+class DetailBook(generics.RetrieveAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookListSerializer
 
 
 @csrf_exempt
