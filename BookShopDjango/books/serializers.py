@@ -32,6 +32,7 @@ class BookListSerializer(serializers.ModelSerializer):
         fields = ('id',
                   'title',
                   'author',
+                  'description',
                   'publish_year',
                   'stock',
                   'price',
