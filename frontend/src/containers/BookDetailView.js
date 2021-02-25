@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import Books from "../components/Book";
+import Book from "../components/Book";
 import { Card } from "antd";
 
 class BookDetail extends React.Component {

@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import Books from "../components/Book";
+import Book from "../components/Book";
 
 const listData = [];
 for (let i = 0; i < 23; i++) {
@@ -32,7 +32,7 @@ class BookList extends React.Component {
   render() {
     return (
       <div>
-        <Books data={this.state.books} /> <br />
+        <Book data={this.state.books} /> <br />
         <h2> Create a book </h2>
       </div>
     );
