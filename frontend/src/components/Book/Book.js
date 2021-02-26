@@ -37,8 +37,8 @@ const Book = (props) => {
                     extra={
                         <img
                             width={272}
-                            alt="logo"
-                            src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                            alt={item.title}
+                            src={`http://127.0.0.1:8000${item.image}`}
                         />
                     }
                 >
