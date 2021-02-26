@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import Book from "../../components/Book/Book";
 import {Card} from "antd";
+import BookForm from "../../components/BookForm/BookForm";
 
 class BookDetail extends React.Component {
     state = {
@@ -20,10 +21,17 @@ class BookDetail extends React.Component {
 
     render() {
         return (
-            <Card title={this.state.book.title}>
-                <p>{this.state.book.description}</p>
-            </Card>
-        );
+            <div>
+                <Card title={this.state.book.title}>
+                    <p>{this.state.book.description}</p>
+                </Card>
+                <BookForm
+                    requestType="put"
+                    bookID={this.props.match.params.bookID}
+                    btnText="Update"
+                />
+            </div>
+        )
     }
 }
 
