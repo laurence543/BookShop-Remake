@@ -43,7 +43,7 @@ const Book = (props) => {
                     }
                 >
                     <List.Item.Meta
-                        title={<a href={item.href}>{item.title}</a>}
+                        title={<a href={`books/${item.id}`}>{item.title}</a>}
                         //description={item.description}
 
                     />
