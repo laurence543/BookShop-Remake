@@ -12,19 +12,29 @@ from time import strftime, localtime
 from books.models import Book
 from books.serializers import BookWithoutPublisherSerializer, BookListSerializer, PublisherSerializer
 from rest_framework.response import Response
-from rest_framework import generics
+from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
 
 
 # Create your views here.
-class BookAPIView(generics.ListAPIView):
+class BookView(ListAPIView):
     queryset = Book.objects.all()
     serializer_class = BookListSerializer
     template_name = "books/index.html"
 
 
-class DetailBook(generics.RetrieveAPIView):
+class BookDetailView(RetrieveAPIView):
     queryset = Book.objects.all()
     serializer_class = BookListSerializer
+
+
+class BookCreateView(CreateAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookListSerializer
+
+
+class PublisherView(RetrieveAPIView):
+    queryset = Publisher.objects.all()
+    serializer_class = PublisherSerializer
 
 
 @csrf_exempt
@@ -70,7 +80,7 @@ def create(request):
             publish_year=publish_year,
             image=file_url,
             stock=stock,
-            publisher=Publisher.objects.get(publisher_title=publisher),
+            publisher=Publisher.objects.get(publisher=publisher),
             price=price,
         )
         book.save()

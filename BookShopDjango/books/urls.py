@@ -2,8 +2,10 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('api/', views.BookAPIView.as_view(), name='index'),
-    path('api/<int:pk>', views.DetailBook.as_view(), name='single'),
+    path('api/', views.BookView.as_view(), name='index'),
+    path('api/<int:pk>', views.BookDetailView.as_view(), name='single'),
+    path('api/create', views.BookCreateView.as_view(), name='create'),
+    # path('api/publishers', views.PublisherView.as_view(), name='publishers'),
     # path('', views.BookAPIView.as_view(), name='index'),
     # path('<int:pk>', views.DetailBook.as_view(), name='single'),
     # path('', views.index, name='index'),
