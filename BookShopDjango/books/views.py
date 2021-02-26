@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
-from rest_framework import status
+from rest_framework import status, viewsets
 from django.core.paginator import Paginator
 from user import get_user
 from .models import Book, Publisher
@@ -12,22 +12,15 @@ from time import strftime, localtime
 from books.models import Book
 from books.serializers import BookWithoutPublisherSerializer, BookListSerializer, PublisherSerializer
 from rest_framework.response import Response
-from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
+from rest_framework.generics import ListAPIView, \
+                                    RetrieveAPIView, \
+                                    CreateAPIView, \
+                                    UpdateAPIView, \
+                                    DestroyAPIView
 
 
 # Create your views here.
-class BookView(ListAPIView):
-    queryset = Book.objects.all()
-    serializer_class = BookListSerializer
-    template_name = "books/index.html"
-
-
-class BookDetailView(RetrieveAPIView):
-    queryset = Book.objects.all()
-    serializer_class = BookListSerializer
-
-
-class BookCreateView(CreateAPIView):
+class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookListSerializer
 
