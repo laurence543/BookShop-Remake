@@ -14,7 +14,8 @@ class PublisherSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Publisher
-        fields = "__all__"
+        # fields = "__all__"
+        fields = ('id', 'publisher')
 
     def create(self, validated_data):
         books_data = validated_data.pop('book_publisher')
@@ -39,3 +40,9 @@ class BookListSerializer(serializers.ModelSerializer):
                   'publisher',
                   'image'
                   )
+
+    def create(self, validated_data):
+        chosen_publisher = Publisher.objects.get(publisher=validated_data['publisher']['publisher'])
+        validated_data['publisher'] = chosen_publisher
+        Book.objects.create(**validated_data)
+        return validated_data
