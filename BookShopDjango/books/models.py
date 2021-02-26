@@ -4,9 +4,6 @@ from django.db import models
 # Класс модели  публикации новости
 class Publisher(models.Model):
 
-    def __str__(self):
-        return self.publisher
-
     publisher = models.CharField(max_length=100, default="undefined")
 
 
