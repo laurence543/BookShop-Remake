@@ -31,6 +31,7 @@ class BookForm extends React.Component {
                 })
                 .then(res => console.log(res))
                 .catch(error => console.log(error));
+                break
             case 'put':
                 axios.put(`http://127.0.0.1:8000/api/${bookID}/`, {
                     title: title,
@@ -43,6 +44,7 @@ class BookForm extends React.Component {
                 })
                 .then(res => console.log(res))
                 .catch(error => console.log(error));
+                break
         }
     }
 
