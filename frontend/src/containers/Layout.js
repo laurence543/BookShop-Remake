@@ -2,6 +2,7 @@ import React from 'react';
 import {Layout, Menu, Breadcrumb} from 'antd';
 import {Link} from 'react-router-dom';
 import * as actions from '../store/actions/auth';
+import {connect} from "react-redux";
 
 const {Header, Content, Footer} = Layout;
 
@@ -31,7 +32,7 @@ class CustomLayout extends React.Component {
                         </Menu.Item>
                         {
                             this.props.isAuthentificated ?
-                                <Menu.Item key="5">
+                                <Menu.Item key="5" onClick={this.props.logout}>
                                     Вийти
                                 </Menu.Item>
                                 :
@@ -58,4 +59,10 @@ class CustomLayout extends React.Component {
     }
 }
 
-export default CustomLayout;
+const mapDispatchToProps = dispatch => {
+    return {
+        logout: () => dispatch(actions.logout())
+    }
+}
+
+export default connect(null, mapDispatchToProps)(CustomLayout);
