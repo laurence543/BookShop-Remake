@@ -139,10 +139,10 @@ class RegistrationForm extends React.Component {
                 </Form.Item>
 
                 <Form.Item
-                    name="nickname"
+                    name="username"
                     label={
                         <span>
-                        Nickname&nbsp;
+                        Username&nbsp;
                             <Tooltip title="What do you want others to call you?">
                             <QuestionCircleOutlined/>
                         </Tooltip>

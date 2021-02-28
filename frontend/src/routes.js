@@ -15,8 +15,8 @@ const BaseRouter = () => (
         <Route exact path="/contacts/" component={Contacts}/>
         <Route exact path="/books/" component={BookList}/>
         <Route exact path="/books/:bookID/" component={BookDetail}/>
-        <Route exact path="/login/" component={Login}/>
-        <Route exact path="/signup/" component={Signup}/>
+        <Route exact path="/access/login/" component={Login}/>
+        <Route exact path="/access/signup/" component={Signup}/>
     </div>
 );
 

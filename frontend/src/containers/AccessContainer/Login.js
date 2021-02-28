@@ -1,6 +1,5 @@
 import React from 'react';
 import {Form, Input, Button, Checkbox, Spin} from 'antd';
-import Icon from '@ant-design/icons';
 import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import * as actions from '../../store/actions/auth';
@@ -63,7 +62,7 @@ class LoginForm extends React.Component {
                     </Button>
                     <span> or</span>
                     <NavLink
-                        to='/signup/'> Sign Up
+                        to='/access/signup/'> Sign Up
                     </NavLink>
                 </Form.Item>
             </Form>
