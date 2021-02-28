@@ -13,6 +13,6 @@ class Book(models.Model):
     description = models.CharField(max_length=1024)
     publish_year = models.IntegerField()
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE, related_name="book_publisher")
-    image = models.CharField(max_length=100, default=False)
+    image = models.CharField(max_length=100, default="/media/pic_absent.jpg")
     stock = models.IntegerField()
     price = models.IntegerField()
