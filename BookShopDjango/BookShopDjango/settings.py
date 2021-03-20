@@ -45,8 +45,10 @@ INSTALLED_APPS = [
     
     'rest_framework',
     'rest_framework.authtoken',
-    'rest_auth',
-    'rest_auth.registration',
+    #'rest_auth',
+    #'rest_auth.registration',
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
 
     'common_tabs.apps.CommonTabsConfig',
     'books.apps.BooksConfig',
