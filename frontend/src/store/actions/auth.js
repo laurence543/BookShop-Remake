@@ -93,7 +93,8 @@ export const authSignup = (
             dispatch(checkAuthTimeout(3600));
         })
         .catch(err => {
-            dispatch(authFail(err))
+            dispatch(authFail(err));
+            console.log(err.response.data);
         })
     }
 }
