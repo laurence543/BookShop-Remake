@@ -234,7 +234,7 @@ class RegistrationForm extends React.Component {
                     ]}
                 >
                     <Input
-                        addonBefore="+38"
+                        addonBefore="+380"
                     />
                 </Form.Item>
 
