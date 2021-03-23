@@ -16,12 +16,17 @@ class Profile extends React.Component {
             "Content-Type": "application/json",
             Authorization: `Token ${this.props.token}`
         };
-        axios.get("http://127.0.0.1:8000/access/api/profile").then(res => {
-            this.setState({
-                profile: res.data
+        axios.get("http://127.0.0.1:8000/access/api/profile")
+            .then(res => {
+                this.setState({
+                    profile: res.data
+                });
+                console.log(this.state.profile);
+            })
+            .catch(error => {
+                console.log(error)
+                this.props.history.push("/")
             });
-            console.log(this.state.profile);
-        });
 
     }
 
