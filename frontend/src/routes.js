@@ -7,6 +7,7 @@ import About from "./containers/CommonPagesContainer/About";
 import Contacts from "./containers/CommonPagesContainer/Contacts";
 import Login from "./containers/AccessContainer/Login";
 import Signup from "./containers/AccessContainer/Signup";
+import Profile from "./containers/AccessContainer/Profile";
 
 const BaseRouter = () => (
     <div>
@@ -17,6 +18,7 @@ const BaseRouter = () => (
         <Route exact path="/books/:bookID/" component={BookDetail}/>
         <Route exact path="/access/login/" component={Login}/>
         <Route exact path="/access/signup/" component={Signup}/>
+        <Route exact path="/access/profile/" component={Profile}/>
     </div>
 );
 
