@@ -23,7 +23,7 @@ class LoginForm extends React.Component {
 
     handleSubmit = values => {
         console.log('Received values of form: ', values);
-        this.props.onAuth(values.username, values.password);
+        this.props.onAuth(values.email, values.password);
         this.props.history.push('/');
     }
 
@@ -37,9 +37,9 @@ class LoginForm extends React.Component {
                 onFinish={this.handleSubmit}
             >
                 <Form.Item
-                    label="Username"
-                    name="username"
-                    rules={[{required: true, message: 'Please input your username!'}]}
+                    label="Email"
+                    name="email"
+                    rules={[{required: true, message: 'Please input your email!'}]}
                 >
                     <Input/>
                 </Form.Item>
@@ -79,7 +79,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (username, password) => dispatch(actions.authLogin(username, password))
+        onAuth: (email, password) => dispatch(actions.authLogin(email, password))
     }
 }
 

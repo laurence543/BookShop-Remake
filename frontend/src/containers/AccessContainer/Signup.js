@@ -8,13 +8,17 @@ import {
     Col,
     Checkbox,
     Button,
+    DatePicker,
 } from 'antd';
+import moment from 'moment';
 import {QuestionCircleOutlined} from '@ant-design/icons';
 import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import * as actions from '../../store/actions/auth';
 
 const {Option} = Select;
+const dateFormat = 'YYYY-MM-DD';
+const dateFormatVisible = 'DD/MM/YYYY';
 
 const formItemLayout = {
     labelCol: {
@@ -52,25 +56,19 @@ class RegistrationForm extends React.Component {
     onFinish = (values) => {
         console.log('Received values of form: ', values);
         this.props.onAuth(
-            values.username,
             values.email,
             values.password,
-            values.confirm
+            values.confirm,
+            values.username,
+            values.gender,
+            values.first_name,
+            values.last_name,
+            moment(values.birth_date).format(dateFormat),
+            values.location,
+            values.tel.toString()
         );
         this.props.history.push('/');
     };
-
-    prefixSelector = (
-        <Form.Item name="prefix" noStyle>
-            <Select
-                style={{
-                    width: 80,
-                }}
-            >
-                <Option value="+380">+380</Option>
-            </Select>
-        </Form.Item>
-    );
 
     render() {
         return (
@@ -78,9 +76,6 @@ class RegistrationForm extends React.Component {
                 {...formItemLayout}
                 name="register"
                 onFinish={this.onFinish}
-                initialValues={{
-                    prefix: '+380',
-                }}
                 scrollToFirstError
             >
                 <Form.Item
@@ -142,26 +137,82 @@ class RegistrationForm extends React.Component {
                     name="username"
                     label={
                         <span>
-                        Username&nbsp;
+                            Username&nbsp;
                             <Tooltip title="What do you want others to call you?">
-                            <QuestionCircleOutlined/>
-                        </Tooltip>
-                    </span>
+                                <QuestionCircleOutlined/>
+                            </Tooltip>
+                        </span>
+                    }
+
+                >
+                    <Input/>
+                </Form.Item>
+                <Form.Item
+                    name="gender"
+                    label="Gender"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your gender!',
+                        },
+                    ]}
+
+                >
+                    <Select
+                        showSearch
+                        placeholder="Select a gender"
+                    >
+                        <Option value="M">Male</Option>
+                        <Option value="F">Female</Option>
+                        <Option value="O">Other</Option>
+                    </Select>
+                </Form.Item>
+
+                <Form.Item
+                    name="first_name"
+                    label={
+                        <span>
+                            First Name&nbsp;
+                            <Tooltip title="Your Name">
+                                <QuestionCircleOutlined/>
+                            </Tooltip>
+                        </span>
                     }
                     rules={[
                         {
                             required: true,
-                            message: 'Please input your nickname!',
+                            message: 'Please input your First Name!',
                             whitespace: true,
                         },
                     ]}
                 >
                     <Input/>
                 </Form.Item>
-
                 <Form.Item
-                    name="residence"
-                    label="Habitual Residence"
+                    name="last_name"
+                    label={
+                        <span>
+                            Last Name&nbsp;
+                            <Tooltip title="Your Surname">
+                                <QuestionCircleOutlined/>
+                            </Tooltip>
+                        </span>
+                    }
+
+                >
+                    <Input/>
+                </Form.Item>
+                <Form.Item
+                    name="birth_date"
+                    label="Date of Birth"
+                >
+
+                    <DatePicker format={dateFormatVisible}/>
+
+                </Form.Item>
+                <Form.Item
+                    name="location"
+                    label="Location"
                     rules={[
                         {
                             required: true,
@@ -173,7 +224,7 @@ class RegistrationForm extends React.Component {
                 </Form.Item>
 
                 <Form.Item
-                    name="phone"
+                    name="tel"
                     label="Phone Number"
                     rules={[
                         {
@@ -183,10 +234,7 @@ class RegistrationForm extends React.Component {
                     ]}
                 >
                     <Input
-                        addonBefore={this.prefixSelector}
-                        style={{
-                            width: '100%',
-                        }}
+                        addonBefore="+38"
                     />
                 </Form.Item>
 
@@ -246,7 +294,29 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (username, email, password1, password2) => dispatch(actions.authSignup(username, email, password1, password2))
+        onAuth: (
+            email,
+            password1,
+            password2,
+            username,
+            gender,
+            first_name,
+            last_name,
+            birth_date,
+            location,
+            tel
+        ) => dispatch(actions.authSignup(
+            email,
+            password1,
+            password2,
+            username,
+            gender,
+            first_name,
+            last_name,
+            birth_date,
+            location,
+            tel
+        ))
     }
 }
 
