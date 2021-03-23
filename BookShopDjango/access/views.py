@@ -1,9 +1,25 @@
 from django.shortcuts import render
+from rest_framework import status, viewsets, generics, permissions
+from rest_framework.permissions import IsAuthenticated
 from .forms import RegForm, EntryForm
 from .models import User
+from .serializers import UserProfileSerializer
 from hashlib import md5
 from time import strftime, localtime
 from user import get_user
+
+
+# class UserViewSet(viewsets.ModelViewSet):
+#     permission_classes = (IsAuthenticated,)
+
+class ProfileAPI(generics.RetrieveAPIView):
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+    serializer_class = UserProfileSerializer
+
+    def get_object(self):
+        return self.request.user
 
 
 # Представлення для завантаження сторінки входу
