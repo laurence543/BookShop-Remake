@@ -1,15 +1,13 @@
 import React from 'react';
 import axios from "axios";
-import {Form, Input, Button, Upload, Space} from 'antd';
+import {Form, Input, Button, Upload, Space, message} from 'antd';
 import {UploadOutlined} from '@ant-design/icons';
 import './BookCreateForm.css';
 
 const FormItem = Form.Item;
 
 class BookCreateForm extends React.Component {
-    state = {
-        fileList: []
-    }
+
     onFinish = (values) => {
         console.log("Success:", values.title);
         //Can directly call props here
@@ -21,6 +19,15 @@ class BookCreateForm extends React.Component {
 
     handleFormInit = (event, requestType) => {
 
+    }
+
+    beforeUploadImageHandler = (file) => {
+        const isJPG = file.type === 'image/jpeg';
+        const isPNG = file.type === 'image/png';
+        if (!isJPG && !isPNG) {
+            message.error('You can only upload JPG or PNG file!');
+        }
+        return false;
     }
 
     handleFormSubmit = (event, requestType, bookID) => {
@@ -68,7 +75,6 @@ class BookCreateForm extends React.Component {
     }
 
     render() {
-        const {fileList} = this.state;
         return (
             <div>
                 <Form
@@ -82,6 +88,7 @@ class BookCreateForm extends React.Component {
                     labelCol={{
                         span: 2,
                     }}
+
                     wrapperCol={{
                         span: 14,
                     }}
@@ -116,7 +123,7 @@ class BookCreateForm extends React.Component {
                             className="img-upload"
                             label="Image"
                             listType="picture"
-                            beforeUpload={() => false}
+                            beforeUpload={this.beforeUploadImageHandler}
                             maxCount={1}
                         >
                             <Button icon={<UploadOutlined/>}>Upload (Max: 1)</Button>
