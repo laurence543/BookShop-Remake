@@ -7,7 +7,9 @@ import './BookCreateForm.css';
 const FormItem = Form.Item;
 
 class BookCreateForm extends React.Component {
-
+    state = {
+        fileList: []
+    }
     onFinish = (values) => {
         console.log("Success:", values.title);
         //Can directly call props here
@@ -29,20 +31,27 @@ class BookCreateForm extends React.Component {
         const stock = event.stock;
         const price = event.price;
         const publisher = event.publisher;
+        const image = event.image.file;
+
+        const formData = new FormData();
+
+        formData.append("title", title);
+        formData.append("author", author);
+        formData.append("description", description);
+        formData.append("publish_year", publish_year);
+        formData.append("stock", stock);
+        formData.append("price", price);
+        formData.append("publisher", publisher);
+        formData.append("image", image);
 
         switch (requestType) {
             case 'post':
-                return axios.post('http://127.0.0.1:8000/books/api/', {
-                    title: title,
-                    author: author,
-                    description: description,
-                    publish_year: publish_year,
-                    stock: stock,
-                    price: price,
-                    publisher: publisher
-                })
+                return axios.post('http://127.0.0.1:8000/books/api/', formData)
                     .then(res => console.log(res))
-                    .catch(error => console.log(error));
+                    .catch(error => {
+                        console.log(error);
+                        console.log(error.response.data);
+                    });
             case 'put':
                 return axios.put(`http://127.0.0.1:8000/books/api/${bookID}/`, {
                     title: title,
@@ -54,11 +63,12 @@ class BookCreateForm extends React.Component {
                     publisher: publisher
                 })
                     .then(res => console.log(res))
-                    .catch(error => console.log(error));
+                    .catch(error => console.log(error.response.data));
         }
     }
 
     render() {
+        const {fileList} = this.state;
         return (
             <div>
                 <Form
@@ -99,16 +109,19 @@ class BookCreateForm extends React.Component {
                         <Input name="price" placeholder="Put a price here"/>
                     </Form.Item>
                     <Form.Item label="Image Root" id='image_root' name="image_root">
-                        <Input name="image_root" placeholder="Put an image here"/>
+                        <Input name="image_root" placeholder="Image Root" disabled/>
                     </Form.Item>
-                    <Upload
-                        className="img-upload"
-                        label="Image"
-                        listType="picture"
-                        maxCount={1}
-                    >
-                        <Button icon={<UploadOutlined/>}>Upload (Max: 1)</Button>
-                    </Upload>
+                    <Form.Item label="Image" id='image' name="image">
+                        <Upload
+                            className="img-upload"
+                            label="Image"
+                            listType="picture"
+                            beforeUpload={() => false}
+                            maxCount={1}
+                        >
+                            <Button icon={<UploadOutlined/>}>Upload (Max: 1)</Button>
+                        </Upload>
+                    </Form.Item>
                     <Form.Item>
                         <Button type="primary" htmlType="submit">{this.props.btnText}</Button>
                     </Form.Item>

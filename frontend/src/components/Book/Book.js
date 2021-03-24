@@ -36,9 +36,9 @@ const Book = (props) => {
                     ]}
                     extra={
                         <img
-                            width={272}
+                            width={200} //272
                             alt={item.title}
-                            src={`http://127.0.0.1:8000${item.image}`}
+                            src={item.image}
                         />
                     }
                 >
