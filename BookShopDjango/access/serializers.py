@@ -85,9 +85,15 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
+
+    user = serializers.CharField(source="user.username")
+
     class Meta:
         model = Order
-        fields = "__all__"
+        fields = ('id',
+                  'user',
+                  'order_date',
+                  )
 
 
 class Order_ContentSerializer(serializers.ModelSerializer):

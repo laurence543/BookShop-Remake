@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework import status, viewsets, generics, permissions
 from rest_framework.permissions import IsAuthenticated
 from .forms import RegForm, EntryForm
-from .models import User
-from .serializers import UserProfileSerializer
+from .models import User, Order
+from .serializers import UserProfileSerializer, OrderSerializer
 from hashlib import md5
 from time import strftime, localtime
 from user import get_user
@@ -20,6 +20,21 @@ class ProfileAPI(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
+
+
+class ProfileOrdersAPI(generics.ListAPIView):
+    # permission_classes = [
+    #     permissions.IsAuthenticated,
+    # ]
+    # queryset = Order.objects.all()
+    # queryset = Order.objects.filter(user=self.request.user)
+    serializer_class = OrderSerializer
+
+    # def get_object(self):
+    #     return self.request.user
+
+    def get_queryset(self):
+        return Order.objects.filter(user_id=self.request.user)
 
 
 # Представлення для завантаження сторінки входу
