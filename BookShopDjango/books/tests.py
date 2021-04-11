@@ -29,6 +29,7 @@ class BookModelTest(TestCase):
                             publisher=publisher)
 
     def test_title_content(self):
-        publisher = Book.objects.get(id=1)
-        expected_object_name = f'{publisher.publisher}'
+        book = Book.objects.get(id=1)
+        expected_object_name = f'{book.publisher.publisher}'
+        print(expected_object_name)
         self.assertEquals(expected_object_name, 'Some Test publisher')
