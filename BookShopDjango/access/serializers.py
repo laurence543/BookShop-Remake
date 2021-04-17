@@ -84,8 +84,23 @@ class UserProfileSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class OrderSerializer(serializers.ModelSerializer):
+class OrderContentSerializer(serializers.ModelSerializer):
+    """
+        For order creation.
+    """
 
+    class Meta:
+        model = Order_content
+        fields = (
+            'book',
+            'amount',
+        )
+
+
+class OrderProfileSerializer(serializers.ModelSerializer):
+    """
+        Orders representation for Profile.
+    """
     user = serializers.CharField(source="user.username")
 
     class Meta:
@@ -96,7 +111,23 @@ class OrderSerializer(serializers.ModelSerializer):
                   )
 
 
-class Order_ContentSerializer(serializers.ModelSerializer):
+class OrderSerializer(serializers.ModelSerializer):
+    """
+        Order serializer for orders creation.
+    """
+    books_data = OrderContentSerializer(many=True)
+
     class Meta:
-        model = Order_content
-        fields = "__all__"
+        model = Order
+        fields = (
+                  'books_data',
+                  )
+
+    def create(self, validated_data):
+        books_data = validated_data['books_data']
+        user_id = self.context['request'].user.id
+        chosen_user = User.objects.get(id=user_id)
+        order = Order.objects.create(user=chosen_user)
+        for book in books_data:
+            Order_content.objects.create(order=order, **book)
+        return validated_data
