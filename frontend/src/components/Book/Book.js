@@ -1,6 +1,6 @@
 import React from 'react';
 import { List, Avatar, Space } from 'antd';
-import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
+import {MessageOutlined, LikeOutlined, StarOutlined, ShoppingCartOutlined} from '@ant-design/icons';
 import './Book.css';
 
 const IconText = ({ type, text }) => (
@@ -50,7 +50,8 @@ const Book = (props) => {
                     {item.content}
                     <div className="author-div">{item.author}</div>
                     <div>{item.description}</div>
-
+                    <br/>
+                    <button className="add-to-cart-button">Add to Cart <ShoppingCartOutlined /></button>
 
                 </List.Item>
             )}
