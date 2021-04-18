@@ -18,32 +18,35 @@ class CustomLayout extends React.Component {
                         defaultSelectedKeys={['2']}
                         style={{lineHeight: '64px'}}
                     >
-                        <Menu.Item key="1">
+                        <Menu.Item>
                             <Link to="/">Головна</Link>
                         </Menu.Item>
-                        <Menu.Item key="2">
+                        <Menu.Item>
                             <Link to="/about">Про нас</Link>
                         </Menu.Item>
-                        <Menu.Item key="3">
+                        <Menu.Item>
                             <Link to="/books">Каталог</Link>
                         </Menu.Item>
-                        <Menu.Item key="4">
+                        <Menu.Item>
+                            <Link to="#">Кошик</Link>
+                        </Menu.Item>
+                        <Menu.Item>
                             <Link to="/contacts">Контакти</Link>
                         </Menu.Item>
                         {
                             this.props.isAuthenticated
                                 ?
                                 <>
-                                    <Menu.Item key="5">
+                                    <Menu.Item>
                                         <Link to="/access/profile">Профіль</Link>
                                     </Menu.Item>
-                                    <Menu.Item key="6" onClick={this.props.logout}>
+                                    <Menu.Item onClick={this.props.logout}>
                                         Вийти
                                     </Menu.Item>
                                 </>
 
                                 :
-                                <Menu.Item key="7">
+                                <Menu.Item>
                                     <Link to="/access/login">Увійти</Link>
                                 </Menu.Item>
                         }
