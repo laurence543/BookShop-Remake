@@ -5,7 +5,7 @@ import BookCreateForm from "../../components/BookCreateForm/BookCreateForm";
 
 class BookList extends React.Component {
     state = {
-        books: []
+        books: [],
     };
 
     componentDidMount() {
@@ -13,7 +13,6 @@ class BookList extends React.Component {
             this.setState({
                 books: res.data
             });
-            console.log(res.data);
         });
     }
 

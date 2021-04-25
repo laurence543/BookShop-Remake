@@ -1,12 +1,13 @@
 import React from 'react';
-import {Layout, Menu, Breadcrumb} from 'antd';
-import {Link, withRouter} from 'react-router-dom';
+import { Layout, Menu, Breadcrumb } from 'antd';
+import { Link, withRouter } from 'react-router-dom';
 import * as actions from '../store/actions/auth';
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
-const {Header, Content, Footer} = Layout;
+const { Header, Content, Footer } = Layout;
 
 class CustomLayout extends React.Component {
+
     render() {
         return (
             <Layout className="layout">
@@ -28,7 +29,7 @@ class CustomLayout extends React.Component {
                             <Link to="/books">Каталог</Link>
                         </Menu.Item>
                         <Menu.Item>
-                            <Link to="#">Кошик</Link>
+                            <Link to="/cart">Кошик</Link>
                         </Menu.Item>
                         <Menu.Item>
                             <Link to="/contacts">Контакти</Link>

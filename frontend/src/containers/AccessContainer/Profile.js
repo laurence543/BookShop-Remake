@@ -14,11 +14,12 @@ class Profile extends React.Component {
     };
 
     componentDidMount() {
+        console.log(this.props);
+        console.log(this.state);
         axios.defaults.headers = {
             "Content-Type": "application/json",
             Authorization: `Token ${this.props.token}`
         };
-
         axios.get("http://127.0.0.1:8000/access/api/profile")
             .then(res => {
                 this.setState({
@@ -55,7 +56,7 @@ class Profile extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        token: state.token
+        token: state.auth.token
     }
 }
 

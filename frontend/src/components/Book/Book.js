@@ -1,9 +1,11 @@
 import React from 'react';
-import { List, Avatar, Space } from 'antd';
+import {List, Avatar, Space} from 'antd';
 import {MessageOutlined, LikeOutlined, StarOutlined, ShoppingCartOutlined} from '@ant-design/icons';
+import {connect} from "react-redux";
+import { addToCart } from "../../store/actions/cart";
 import './Book.css';
 
-const IconText = ({ type, text }) => (
+const IconText = ({type, text}) => (
     <span>
         {text}
     </span>
@@ -51,11 +53,19 @@ const Book = (props) => {
                     <div className="author-div">{item.author}</div>
                     <div>{item.description}</div>
                     <br/>
-                    <button className="add-to-cart-button">Add to Cart <ShoppingCartOutlined /></button>
+                    <button
+                        className="add-to-cart-button"
+                        onClick={() => props.addToCart(item)}
+                    >Add to Cart <ShoppingCartOutlined/></button>
 
                 </List.Item>
             )}
         />
     )
 }
-export default Book;
+export default connect(
+    (state) => ({}),
+    {
+        addToCart,
+    }
+)(Book);
