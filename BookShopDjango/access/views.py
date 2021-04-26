@@ -28,7 +28,7 @@ class ProfileOrdersAPI(generics.ListAPIView):
     # ]
     # queryset = Order.objects.all()
     # queryset = Order.objects.filter(user=self.request.user)
-    serializer_class = OrderProfileSerializer(many=True)
+    serializer_class = OrderProfileSerializer
 
     # def get_object(self):
     #     return self.request.user
