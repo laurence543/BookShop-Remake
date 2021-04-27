@@ -16,38 +16,38 @@ class CustomLayout extends React.Component {
                     <Menu
                         theme="dark"
                         mode="horizontal"
-                        defaultSelectedKeys={['2']}
+                        //defaultSelectedKeys={['1']}
                         style={{lineHeight: '64px'}}
                     >
-                        <Menu.Item>
+                        <Menu.Item key="1">
                             <Link to="/">Головна</Link>
                         </Menu.Item>
-                        <Menu.Item>
+                        <Menu.Item key="2">
                             <Link to="/about">Про нас</Link>
                         </Menu.Item>
-                        <Menu.Item>
+                        <Menu.Item key="3">
                             <Link to="/books">Каталог</Link>
                         </Menu.Item>
-                        <Menu.Item>
+                        <Menu.Item key="4">
                             <Link to="/cart">Кошик</Link>
                         </Menu.Item>
-                        <Menu.Item>
+                        <Menu.Item key="5">
                             <Link to="/contacts">Контакти</Link>
                         </Menu.Item>
                         {
                             this.props.isAuthenticated
                                 ?
                                 <>
-                                    <Menu.Item>
+                                    <Menu.Item key="6">
                                         <Link to="/access/profile">Профіль</Link>
                                     </Menu.Item>
-                                    <Menu.Item onClick={this.props.logout}>
+                                    <Menu.Item key="7" onClick={this.props.logout}>
                                         Вийти
                                     </Menu.Item>
                                 </>
 
                                 :
-                                <Menu.Item>
+                                <Menu.Item key="8">
                                     <Link to="/access/login">Увійти</Link>
                                 </Menu.Item>
                         }

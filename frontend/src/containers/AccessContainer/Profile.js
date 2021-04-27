@@ -5,7 +5,6 @@ import axios from "axios";
 import UserInfo from "../../components/UserInfo/UserInfo";
 import UserOrders from "../../components/UserOrders/UserOrders";
 
-
 class Profile extends React.Component {
 
     state = {
@@ -14,8 +13,6 @@ class Profile extends React.Component {
     };
 
     componentDidMount() {
-        console.log(this.props);
-        console.log(this.state);
         axios.defaults.headers = {
             "Content-Type": "application/json",
             Authorization: `Token ${this.props.token}`
