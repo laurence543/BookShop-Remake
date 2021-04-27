@@ -9,6 +9,7 @@ import Login from "./containers/AccessContainer/Login";
 import Signup from "./containers/AccessContainer/Signup";
 import Profile from "./containers/AccessContainer/Profile";
 import Cart from "./containers/Cart/Cart";
+import Checkout from "./containers/Checkout/Checkout";
 
 const BaseRouter = () => (
     <div>
@@ -21,6 +22,7 @@ const BaseRouter = () => (
         <Route exact path="/access/login/" component={Login}/>
         <Route exact path="/access/signup/" component={Signup}/>
         <Route exact path="/access/profile/" component={Profile}/>
+        <Route exact path="/access/checkout/" component={Checkout}/>
     </div>
 );
 
