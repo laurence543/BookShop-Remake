@@ -1,4 +1,5 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
 import {connect} from "react-redux";
 import axios from "axios";
 import { Descriptions, Button } from 'antd';
@@ -37,6 +38,7 @@ class Checkout extends React.Component {
             book.amount = book.count;
         });
         this.props.createOrder(cartItems);
+        this.props.history.push('/access/checkout/result/');
     }
 
     render() {
