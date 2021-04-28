@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from rest_framework import status, viewsets, generics, permissions
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+
 from .forms import RegForm, EntryForm
 from .models import User, Order, Order_content
 from .serializers import UserProfileSerializer, OrderProfileSerializer, OrderSerializer
@@ -39,9 +41,9 @@ class ProfileOrdersAPI(generics.ListAPIView):
 
 class OrderAPI(generics.CreateAPIView):
 
-    # permission_classes = [
-    #     permissions.IsAuthenticated,
-    # ]
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
 
     queryset = Order_content.objects.all()
     serializer_class = OrderSerializer
