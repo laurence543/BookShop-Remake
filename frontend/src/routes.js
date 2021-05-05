@@ -9,8 +9,8 @@ import Login from "./containers/AccessContainer/Login";
 import Signup from "./containers/AccessContainer/Signup";
 import Profile from "./containers/AccessContainer/Profile";
 import Cart from "./containers/Cart/Cart";
-import Checkout from "./containers/Checkout/Checkout";
-import CheckoutResult from "./containers/Checkout/CheckoutResult";
+import Checkout from "./containers/CheckoutContainer/Checkout";
+import CheckoutResult from "./containers/CheckoutContainer/CheckoutResult";
 
 const BaseRouter = () => (
     <div>
