@@ -2,14 +2,15 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from "react-redux";
 import axios from "axios";
-import { Descriptions, Button } from 'antd';
+import { Descriptions, Button, Space, Modal } from 'antd';
 import "./Checkout.css";
 import {createOrder} from "../../store/actions/order.js";
 
 class Checkout extends React.Component {
 
     state = {
-        user_info: {}
+        user_info: {},
+        loading: true,
     };
 
     componentDidMount() {
@@ -17,7 +18,7 @@ class Checkout extends React.Component {
             "Content-Type": "application/json",
             Authorization: `Token ${this.props.token}`
         };
-        axios.get("http://127.0.0.1:8000/access/api/profile")
+        axios.get("http://127.0.0.1:8000/access/api/checkout")
             .then(res => {
                 this.setState({
                 user_info: res.data
@@ -29,16 +30,33 @@ class Checkout extends React.Component {
             });
     }
 
+    success() {
+        let secondsToGo = 10;
+        const modal = Modal.success();
+        modal.update({
+            content: 'The order successfully created.',
+        });
+        const timer = setInterval(() => {
+            secondsToGo -= 1;
+            modal.update({
+              okText: `OK (${secondsToGo})`,
+            });
+          }, 1000);
+        setTimeout(() => {
+            clearInterval(timer);
+            modal.destroy();
+        }, secondsToGo * 1000);
+    }
+
     onSubmit = () => {
-        console.log(this.props.token);
         const cartItems = this.props.cartItems;
-        console.log(cartItems);
         cartItems.forEach(book => {
             book.book = book.id;
             book.amount = book.count;
         });
         this.props.createOrder(cartItems);
-        this.props.history.push('/access/checkout/result/');
+        this.success();
+        this.props.history.push('/');
     }
 
     render() {

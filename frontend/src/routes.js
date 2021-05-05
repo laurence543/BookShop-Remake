@@ -10,7 +10,6 @@ import Signup from "./containers/AccessContainer/Signup";
 import Profile from "./containers/AccessContainer/Profile";
 import Cart from "./containers/Cart/Cart";
 import Checkout from "./containers/CheckoutContainer/Checkout";
-import CheckoutResult from "./containers/CheckoutContainer/CheckoutResult";
 
 const BaseRouter = () => (
     <div>
@@ -24,7 +23,6 @@ const BaseRouter = () => (
         <Route exact path="/access/signup/" component={Signup}/>
         <Route exact path="/access/profile/" component={Profile}/>
         <Route exact path="/access/checkout/" component={Checkout}/>
-        <Route exact path="/access/checkout/result/" component={CheckoutResult}/>
     </div>
 );
 

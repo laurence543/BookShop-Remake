@@ -5,7 +5,10 @@ from rest_framework.response import Response
 
 from .forms import RegForm, EntryForm
 from .models import User, Order, Order_content
-from .serializers import UserProfileSerializer, OrderProfileSerializer, OrderSerializer
+from .serializers import UserProfileSerializer, \
+                         OrderProfileSerializer, \
+                         OrderSerializer, \
+                         CheckoutSerializer
 from hashlib import md5
 from time import strftime, localtime
 from user import get_user
@@ -47,6 +50,16 @@ class OrderAPI(generics.CreateAPIView):
 
     queryset = Order_content.objects.all()
     serializer_class = OrderSerializer
+
+
+class CheckoutAPI(generics.RetrieveAPIView):
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+    serializer_class = CheckoutSerializer
+
+    def get_object(self):
+        return self.request.user
 
 
 # Представлення для завантаження сторінки входу

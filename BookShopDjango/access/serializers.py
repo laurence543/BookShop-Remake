@@ -131,3 +131,13 @@ class OrderSerializer(serializers.ModelSerializer):
         for book in books_data:
             Order_content.objects.create(order=order, **book)
         return validated_data
+
+
+class CheckoutSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = (
+            'first_name',
+            'tel',
+            'location',
+        )
