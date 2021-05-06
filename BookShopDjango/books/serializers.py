@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from books.models import Book, Publisher
+from books.models import Book, Publisher, Genre
+from rest_framework.relations import PrimaryKeyRelatedField
 
 
 class BookWithoutPublisherSerializer(serializers.ModelSerializer):
@@ -25,8 +26,17 @@ class PublisherSerializer(serializers.ModelSerializer):
         return publisher
 
 
+class GenreSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Genre
+        fields = '__all__'
+
+
 class BookListSerializer(serializers.ModelSerializer):
     publisher = serializers.CharField(source="publisher.publisher")
+    # genre = GenreSerializer(read_only=True, many=True)
+    genre = PrimaryKeyRelatedField(queryset=Genre.objects.all(), many=True)
 
     class Meta:
         model = Book
@@ -34,18 +44,25 @@ class BookListSerializer(serializers.ModelSerializer):
                   'title',
                   'author',
                   'description',
+                  'isbn',
+                  'genre',
                   'publish_year',
+                  'number_of_pages',
+                  'publisher',
+                  'language',
+                  'cover',
                   'stock',
                   'price',
-                  'publisher',
                   'image'
                   )
 
     def create(self, validated_data):
         chosen_publisher = Publisher.objects.get(publisher=validated_data['publisher']['publisher'])
         validated_data['publisher'] = chosen_publisher
-        Book.objects.create(**validated_data)
-        return validated_data
+        chosen_genres = validated_data.pop('genre')
+        book = Book.objects.create(**validated_data)
+        book.genre.add(*chosen_genres)
+        return book
 
     def update(self, instance, validated_data):
         chosen_publisher = Publisher.objects.get(publisher=validated_data['publisher']['publisher'])
