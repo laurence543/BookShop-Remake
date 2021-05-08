@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
+import {Button} from 'antd';
+import {NavLink} from 'react-router-dom';
 import Book from "../../components/Book/Book";
-import BookCreateForm from "../../components/BookCreateForm/BookCreateForm";
 
 class BookList extends React.Component {
     state = {
@@ -19,14 +20,10 @@ class BookList extends React.Component {
     render() {
         return (
             <div>
+                <NavLink to='/books/create'>
+                    <Button type="primary" htmlType="button">Create Book</Button>
+                </NavLink>
                 <Book data={this.state.books}/>
-                <br/>
-                <h2> Create a book </h2>
-                <BookCreateForm
-                    requestType="post"
-                    bookID={null}
-                    btnText="Create"
-                />
             </div>
         );
     }

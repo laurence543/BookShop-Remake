@@ -9,8 +9,11 @@ from .models import Book, Publisher
 from .forms import CreateForm, EditForm, EditImageForm
 from django.core.files.storage import FileSystemStorage
 from time import strftime, localtime
-from books.models import Book
-from books.serializers import BookWithoutPublisherSerializer, BookListSerializer, PublisherSerializer
+from books.models import Book, Genre
+from books.serializers import BookWithoutPublisherSerializer, \
+                              BookListSerializer, \
+                              PublisherSerializer, \
+                              GenreSerializer
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView, \
                                     RetrieveAPIView, \
@@ -28,6 +31,11 @@ class BookViewSet(viewsets.ModelViewSet):
 class PublisherView(RetrieveAPIView):
     queryset = Publisher.objects.all()
     serializer_class = PublisherSerializer
+
+
+class GenreViewSet(viewsets.ModelViewSet):
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer
 
 
 @csrf_exempt

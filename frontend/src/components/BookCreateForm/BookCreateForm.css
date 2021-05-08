@@ -4,3 +4,15 @@
 .book-form .book-form-button-delete {
     margin: 1.5%;
 }
+.site-tag-plus {
+  background: #fff;
+  border-style: dashed;
+}
+.edit-tag {
+  user-select: none;
+}
+.tag-input {
+  width: 78px;
+  margin-right: 8px;
+  vertical-align: top;
+}
