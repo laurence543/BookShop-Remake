@@ -11,20 +11,22 @@ import Signup from "./containers/AccessContainer/Signup";
 import Profile from "./containers/AccessContainer/Profile";
 import Cart from "./containers/Cart/Cart";
 import Checkout from "./containers/CheckoutContainer/Checkout";
+import ManagerControlPanel from "./containers/ManagerControlPanel/ManagerControlPanel";
 
 const BaseRouter = () => (
     <div>
         <Route exact path="/" component={Home}/>
         <Route exact path="/about/" component={About}/>
         <Route exact path="/contacts/" component={Contacts}/>
-        <Route exact path="/books/" component={BookList}/>
         <Route exact path="/cart/" component={Cart}/>
+        <Route exact path="/books/" component={BookList}/>
         <Route exact path="/books/:bookID(\d+)/" component={BookDetail}/>
         <Route exact path="/books/create/" component={BookCreate}/>
         <Route exact path="/access/login/" component={Login}/>
         <Route exact path="/access/signup/" component={Signup}/>
         <Route exact path="/access/profile/" component={Profile}/>
         <Route exact path="/access/checkout/" component={Checkout}/>
+        <Route exact path="/access/manager_control_panel/" component={ManagerControlPanel}/>
     </div>
 );
 

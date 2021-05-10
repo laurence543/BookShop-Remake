@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from access.models import User, Order, Order_content
-
+from dj_rest_auth.models import TokenModel
 from django.utils.translation import ugettext_lazy as _
 from allauth.account import app_settings as allauth_settings
 from allauth.account.adapter import get_adapter
@@ -141,3 +141,14 @@ class CheckoutSerializer(serializers.ModelSerializer):
             'tel',
             'location',
         )
+
+
+class TokenSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Token model.
+    """
+    is_user_staff = serializers.CharField(source="user.is_staff")
+
+    class Meta:
+        model = TokenModel
+        fields = ('key', 'is_user_staff')

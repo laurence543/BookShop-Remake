@@ -35,6 +35,15 @@ class CustomLayout extends React.Component {
                             <Link to="/contacts">Контакти</Link>
                         </Menu.Item>
                         {
+                            this.props.isStaff
+                                ?
+                                <Menu.Item key="9">
+                                    <Link to="/access/manager_control_panel">Панель керування</Link>
+                                </Menu.Item>
+                                :
+                                <></>
+                        }
+                        {
                             this.props.isAuthenticated
                                 ?
                                 <>

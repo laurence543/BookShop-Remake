@@ -72,6 +72,9 @@ REST_FRAMEWORK = {
 REST_AUTH_REGISTER_SERIALIZERS = {
     "REGISTER_SERIALIZER": "access.serializers.RegisterSerializer"
 }
+REST_AUTH_SERIALIZERS = {
+    'TOKEN_SERIALIZER': 'access.serializers.TokenSerializer',
+}
 
 # django-allauth
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
