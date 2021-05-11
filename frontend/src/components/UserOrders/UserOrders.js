@@ -5,7 +5,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import axios from "axios";
 import './UserOrders.css';
 
-const dateFormat = 'DD/MM/YYYY mm:hh';
+const dateFormat = 'DD/MM/YYYY hh:mm';
 const fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo';
 
 const UserOrders = (props) => {

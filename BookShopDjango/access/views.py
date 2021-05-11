@@ -62,6 +62,15 @@ class CheckoutAPI(generics.RetrieveAPIView):
         return self.request.user
 
 
+class AllOrdersAPI(generics.ListAPIView):
+    permission_classes = [
+        permissions.IsAuthenticated,
+        permissions.IsAdminUser,
+    ]
+    queryset = Order.objects.all()
+    serializer_class = OrderProfileSerializer
+
+
 # Представлення для завантаження сторінки входу
 def entry(request):
     if request.method == 'POST':
