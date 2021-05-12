@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
+from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework import status, viewsets
 from django.core.paginator import Paginator
 from user import get_user
@@ -26,6 +27,16 @@ from rest_framework.generics import ListAPIView, \
 class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookListSerializer
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ['title', 'genre__genre']
+    ordering_fields = ['title', 'price']
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        genre = self.request.query_params.get('genre')
+        if genre is not None:
+            qs = qs.filter(genre__genre=genre)
+        return qs
 
 
 class PublisherView(RetrieveAPIView):
