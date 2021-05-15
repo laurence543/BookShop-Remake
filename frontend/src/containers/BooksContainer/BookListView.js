@@ -1,9 +1,10 @@
 import React from "react";
 import axios from "axios";
 import {connect} from "react-redux";
-import {Button, Menu, Space} from 'antd';
+import {Button, Menu, Space, Input, AutoComplete} from 'antd';
 import {NavLink} from 'react-router-dom';
 import Book from "../../components/Book/Book";
+import BookSearchAutoComplete from "../../components/BookSearchAutoComplete/BookSearchAutoComplete";
 
 class BookList extends React.Component {
 
@@ -37,12 +38,20 @@ class BookList extends React.Component {
             });
         });
     }
+    getSearchQuery = searchString => {
+        axios.get(`http://127.0.0.1:8000/books/api/?search=${searchString}`).then(res => {
+            this.setState({
+                 books: res.data
+            });
+        });
+    }
 
     render() {
         return (
             <>
                 <div className="wrapper">
                     <div className="sidebar">
+                        <BookSearchAutoComplete searchHandler={this.getSearchQuery}/>
                         <Menu
                             onClick={this.getGenreQuery}
                             mode="horizontal"
