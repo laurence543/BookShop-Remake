@@ -35,11 +35,11 @@ class BookDetail extends React.Component {
                 <BookCreateForm
                     requestType="put"
                     bookID={this.props.match.params.bookID}
-                    btnText="Update"
+                    btnText="Оновити"
                 />
                 <form className="book-form-button-delete" onSubmit={this.handleDelete}>
                     <Button type="danger" htmlType="submit">
-                        Delete
+                        Видалити
                     </Button>
                 </form>
             </div>

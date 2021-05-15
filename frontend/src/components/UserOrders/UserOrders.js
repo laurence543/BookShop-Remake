@@ -14,7 +14,7 @@ const UserOrders = (props) => {
 
     return (
         <>
-            <h1 className={"orders-header"}>Orders</h1>
+            <h1 className={"orders-header"}>Замовлення</h1>
 
             <div className="demo-infinite-container">
                 <List
@@ -22,7 +22,7 @@ const UserOrders = (props) => {
                     renderItem={item => (
                         <List.Item key={item.id}>
                             <List.Item.Meta
-                                title={<a href="https://ant.design">Order #{item.id}</a>}
+                                title={<a href="https://ant.design">Замовлення #{item.id}</a>}
 
                             />
                             <div>{moment(item.order_date).format(dateFormat)}</div>

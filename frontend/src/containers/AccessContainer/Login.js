@@ -39,30 +39,30 @@ class LoginForm extends React.Component {
                 <Form.Item
                     label="Email"
                     name="email"
-                    rules={[{required: true, message: 'Please input your email!'}]}
+                    rules={[{required: true, message: 'Будь ласка, введіть Вашу email адресу!'}]}
                 >
                     <Input/>
                 </Form.Item>
 
                 <Form.Item
-                    label="Password"
+                    label="Пароль"
                     name="password"
-                    rules={[{required: true, message: 'Please input your password!'}]}
+                    rules={[{required: true, message: 'Будь ласка, введіть Ваш пароль!'}]}
                 >
                     <Input.Password/>
                 </Form.Item>
 
                 <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-                    <Checkbox>Remember me</Checkbox>
+                    <Checkbox>Запам'ятати мене</Checkbox>
                 </Form.Item>
 
                 <Form.Item {...tailLayout}>
                     <Button type="primary" htmlType="submit">
-                        Log In
+                        Увійти
                     </Button>
-                    <span> or</span>
+                    <span> або</span>
                     <NavLink
-                        to='/access/signup/'> Sign Up
+                        to='/access/signup/'> Зареєструватись
                     </NavLink>
                 </Form.Item>
             </Form>

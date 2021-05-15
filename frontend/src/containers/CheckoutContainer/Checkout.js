@@ -34,7 +34,7 @@ class Checkout extends React.Component {
         let secondsToGo = 10;
         const modal = Modal.success();
         modal.update({
-            content: 'The order successfully created.',
+            content: 'Замовлення успішно створено.',
         });
         const timer = setInterval(() => {
             secondsToGo -= 1;
@@ -62,24 +62,28 @@ class Checkout extends React.Component {
     render() {
         return (
             <div>
-                <Descriptions className="checkout-user-info-descriptions-title" title="Is everything correct?" layout="horizontal">
-                    <Descriptions.Item label="First Name">{this.state.user_info.first_name}</Descriptions.Item>
-                    <Descriptions.Item label="Phone Number">+380{this.state.user_info.tel}</Descriptions.Item>
-                    <Descriptions.Item label="Location">{this.state.user_info.location}</Descriptions.Item>
+                <Descriptions
+                    className="checkout-user-info-descriptions-title"
+                    title="Все правильно?"
+                    layout="horizontal"
+                >
+                    <Descriptions.Item label="Ім'я">{this.state.user_info.first_name}</Descriptions.Item>
+                    <Descriptions.Item label="Номер телефону">+380{this.state.user_info.tel}</Descriptions.Item>
+                    <Descriptions.Item label="Адреса">{this.state.user_info.location}</Descriptions.Item>
                 </Descriptions>
                 <div className="checkout-submit-button-wrapper">
                     <Button
                         className="checkout-submit-button"
                         shape="round"
                         htmlType="button"
-                    >No, update info</Button>
+                    >Ні, оновити інформацію</Button>
                     <Button
                         className="checkout-submit-button"
                         onClick={this.onSubmit}
                         type="primary"
                         shape="round"
                         htmlType="submit"
-                    >Yes, submit</Button>
+                    >Так, підтвердити</Button>
                 </div>
             </div>
         );

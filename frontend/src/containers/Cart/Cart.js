@@ -13,7 +13,7 @@ import "./Cart.css";
 const DragHandle = SortableHandle(() => <MenuOutlined style={{cursor: 'grab', color: '#999'}}/>);
 const columns = [
     {
-        title: 'Sort',
+        title: 'Сортування',
         dataIndex: 'sort',
         width: 30,
         className: 'drag-visible',
@@ -21,26 +21,26 @@ const columns = [
         render: () => <DragHandle/>,
     },
     {
-        title: 'Title',
+        title: 'Назва',
         dataIndex: 'title',
         className: 'drag-visible',
     },
     {
-        title: 'Author',
+        title: 'Автор',
         dataIndex: 'author',
     },
     {
-        title: 'Price',
+        title: 'Ціна',
         dataIndex: 'price',
         align: 'center',
     },
     {
-        title: 'Amount',
+        title: 'Кількість',
         dataIndex: 'count',
         align: 'center',
     },
     {
-        title: 'Cost',
+        title: 'Вартість',
         align: 'center',
         render: (text, record, index) => {
             return record.count * record.price
@@ -59,7 +59,7 @@ class Cart extends React.Component {
         items.forEach(element => total += element.price * element.count)
         return (
             <Table.Summary.Row>
-                <Table.Summary.Cell index={0} colSpan={5} className="total total-header">Total:</Table.Summary.Cell>
+                <Table.Summary.Cell index={0} colSpan={5} className="total total-header">Всього:</Table.Summary.Cell>
                 <Table.Summary.Cell index={1} className="total">{total}</Table.Summary.Cell>
             </Table.Summary.Row>
         )
@@ -72,12 +72,12 @@ class Cart extends React.Component {
             <>
                 <div>
                     {cartItems.length === 0 ? (
-                        <div className="cart cart-header">Cart is empty</div>
+                        <div className="cart cart-header">Кошик порожній</div>
                     ) : (
                         <>
                             <div>
                                 <div className="cart cart-header">
-                                    You have {cartItems.length} types of books in the cart.
+                                    Ви маєте {cartItems.length} типів книжок у кошику.
                                 </div>
                                 <>
                                     <Table
@@ -106,7 +106,7 @@ class Cart extends React.Component {
                                             type="primary"
                                             shape="round"
                                             htmlType="submit"
-                                        >Order</Button>
+                                        >Замовити</Button>
                                     </NavLink>
                                     :
                                     <NavLink to='/access/signup'>
@@ -115,7 +115,7 @@ class Cart extends React.Component {
                                             type="primary"
                                             shape="round"
                                             htmlType="submit"
-                                        >Sign Up & Order</Button>
+                                        >Зареєструватися та замовити</Button>
                                     </NavLink>
 
                                 }

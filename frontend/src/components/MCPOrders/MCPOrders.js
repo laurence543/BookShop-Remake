@@ -12,7 +12,7 @@ class MCPOrders extends React.Component {
     render() {
         return (
             <>
-                <h1 className={"orders-header"}>Orders</h1>
+                <h1 className={"orders-header"}>Замовлення</h1>
                 <div className="demo-infinite-container">
                     <List
                         dataSource={this.props.data}
@@ -20,7 +20,7 @@ class MCPOrders extends React.Component {
                         renderItem={item => (
                             <List.Item key={item.id}>
                                 <List.Item.Meta
-                                    title={<a href="https://ant.design">Order #{item.id}</a>}
+                                    title={<a href="https://ant.design">Замовлення #{item.id}</a>}
 
                                 />
                                 <List.Item.Meta

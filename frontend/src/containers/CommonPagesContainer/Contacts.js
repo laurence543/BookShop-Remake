@@ -5,7 +5,7 @@ class Contacts extends React.Component {
     render() {
         return (
             <div>
-                <p>Some interesting Content of Contacts Page</p>
+                <p>Сторінка Контакти</p>
             </div>
         );
     }

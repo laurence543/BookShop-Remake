@@ -30,7 +30,7 @@ class ManagerControlPanel extends React.Component {
         return (
             <>
                 <div>
-                    <p>Manager Control Panel</p>
+                    <p>Контрольна панель менеджера</p>
                 </div>
                 <MCPOrders data={this.state.all_orders}/>
             </>

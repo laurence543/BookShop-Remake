@@ -13,7 +13,7 @@ class BookSearchAutoComplete extends React.Component {
                 <div className="book-search-wrapper">
                     <Search
                         className="book-search"
-                        placeholder="Input Search Text"
+                        placeholder="Введіть назву того, що ви шукаєте"
                         onSearch={this.props.searchHandler}
                     />
                 </div>

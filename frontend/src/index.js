@@ -1,15 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { ConfigProvider } from 'antd';
 import './index.css';
 import App from './App';
-import { Provider } from 'react-redux';
+import ukUA from 'antd/lib/locale/uk_UA';
 import store from './store/store';
-
 import reportWebVitals from "./reportWebVitals";
 
 const app = (
     <Provider store={store}>
-        <App />
+        <ConfigProvider locale={ukUA}>
+            <App />
+        </ConfigProvider>
     </Provider>
 )
 

@@ -7,11 +7,11 @@ class BookCreate extends React.Component {
     render() {
         return (
             <>
-                <h2> Create a book </h2>
+                <h2> Створити книгу </h2>
                 <BookCreateForm
                     requestType="post"
                     bookID={null}
-                    btnText="Create"
+                    btnText="Створити"
                 />
             </>
         );

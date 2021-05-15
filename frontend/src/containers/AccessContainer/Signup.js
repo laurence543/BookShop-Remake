@@ -84,11 +84,11 @@ class RegistrationForm extends React.Component {
                     rules={[
                         {
                             type: 'email',
-                            message: 'The input is not valid E-mail!',
+                            message: 'Введено невалідну E-mail адресу!',
                         },
                         {
                             required: true,
-                            message: 'Please input your E-mail!',
+                            message: 'Будь ласка, введіть Вашу E-mail адресу!',
                         },
                     ]}
                 >
@@ -97,11 +97,11 @@ class RegistrationForm extends React.Component {
 
                 <Form.Item
                     name="password"
-                    label="Password"
+                    label="Пароль"
                     rules={[
                         {
                             required: true,
-                            message: 'Please input your password!',
+                            message: 'Будь ласка, введіть пароль!',
                         },
                     ]}
                     hasFeedback
@@ -111,13 +111,13 @@ class RegistrationForm extends React.Component {
 
                 <Form.Item
                     name="confirm"
-                    label="Confirm Password"
+                    label="Підтвердження паролю"
                     dependencies={['password']}
                     hasFeedback
                     rules={[
                         {
                             required: true,
-                            message: 'Please confirm your password!',
+                            message: 'Будь ласка, підтвердіть пароль!',
                         },
                         ({getFieldValue}) => ({
                             validator(_, value) {
@@ -125,7 +125,7 @@ class RegistrationForm extends React.Component {
                                     return Promise.resolve();
                                 }
 
-                                return Promise.reject(new Error('The two passwords that you entered do not match!'));
+                                return Promise.reject(new Error('Введені паролі не співпадають!'));
                             },
                         }),
                     ]}
@@ -137,8 +137,8 @@ class RegistrationForm extends React.Component {
                     name="username"
                     label={
                         <span>
-                            Username&nbsp;
-                            <Tooltip title="What do you want others to call you?">
+                            Нік&nbsp;
+                            <Tooltip title="Як ви хочете, щоб вас називали інші?">
                                 <QuestionCircleOutlined/>
                             </Tooltip>
                         </span>
@@ -149,22 +149,22 @@ class RegistrationForm extends React.Component {
                 </Form.Item>
                 <Form.Item
                     name="gender"
-                    label="Gender"
+                    label="Стать"
                     rules={[
                         {
                             required: true,
-                            message: 'Please input your gender!',
+                            message: 'Будь-ласка, вкажіть Вашу стать!',
                         },
                     ]}
 
                 >
                     <Select
                         showSearch
-                        placeholder="Select a gender"
+                        placeholder="Оберіть стать"
                     >
-                        <Option value="M">Male</Option>
-                        <Option value="F">Female</Option>
-                        <Option value="O">Other</Option>
+                        <Option value="M">Чоловік</Option>
+                        <Option value="F">Жінка</Option>
+                        <Option value="O">Інше</Option>
                     </Select>
                 </Form.Item>
 
@@ -172,8 +172,8 @@ class RegistrationForm extends React.Component {
                     name="first_name"
                     label={
                         <span>
-                            First Name&nbsp;
-                            <Tooltip title="Your Name">
+                            Ім'я&nbsp;
+                            <Tooltip title="Ваше Ім'я">
                                 <QuestionCircleOutlined/>
                             </Tooltip>
                         </span>
@@ -181,7 +181,7 @@ class RegistrationForm extends React.Component {
                     rules={[
                         {
                             required: true,
-                            message: 'Please input your First Name!',
+                            message: 'Будь-ласка, введіть Ваше ім\'я!',
                             whitespace: true,
                         },
                     ]}
@@ -192,8 +192,8 @@ class RegistrationForm extends React.Component {
                     name="last_name"
                     label={
                         <span>
-                            Last Name&nbsp;
-                            <Tooltip title="Your Surname">
+                            Прізвище&nbsp;
+                            <Tooltip title="Ваше прізвище">
                                 <QuestionCircleOutlined/>
                             </Tooltip>
                         </span>
@@ -204,7 +204,7 @@ class RegistrationForm extends React.Component {
                 </Form.Item>
                 <Form.Item
                     name="birth_date"
-                    label="Date of Birth"
+                    label="Дата народження"
                 >
 
                     <DatePicker format={dateFormatVisible}/>
@@ -212,11 +212,11 @@ class RegistrationForm extends React.Component {
                 </Form.Item>
                 <Form.Item
                     name="location"
-                    label="Location"
+                    label="Адреса"
                     rules={[
                         {
                             required: true,
-                            message: 'Please select your habitual residence!',
+                            message: 'Будь ласка, вкажіть місце проживання!',
                         },
                     ]}
                 >
@@ -225,11 +225,11 @@ class RegistrationForm extends React.Component {
 
                 <Form.Item
                     name="tel"
-                    label="Phone Number"
+                    label="Номер телефону"
                     rules={[
                         {
                             required: true,
-                            message: 'Please input your phone number!',
+                            message: 'Будь ласка, вкажіть номер телефону!',
                         },
                     ]}
                 >
@@ -238,7 +238,7 @@ class RegistrationForm extends React.Component {
                     />
                 </Form.Item>
 
-                <Form.Item label="Captcha" extra="We must make sure that your are a human.">
+                <Form.Item label="Капча" extra="Ми маємо переконатися, що ви не робот.">
                     <Row gutter={8}>
                         <Col span={12}>
                             <Form.Item
@@ -247,7 +247,7 @@ class RegistrationForm extends React.Component {
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Please input the captcha you got!',
+                                        message: 'Будь ласка, введіть отриману капчу!',
                                     },
                                 ]}
                             >
@@ -255,7 +255,7 @@ class RegistrationForm extends React.Component {
                             </Form.Item>
                         </Col>
                         <Col span={12}>
-                            <Button>Get captcha</Button>
+                            <Button>Отримати капчу</Button>
                         </Col>
                     </Row>
                 </Form.Item>
@@ -266,18 +266,18 @@ class RegistrationForm extends React.Component {
                     rules={[
                         {
                             validator: (_, value) =>
-                                value ? Promise.resolve() : Promise.reject(new Error('Should accept agreement')),
+                                value ? Promise.resolve() : Promise.reject(new Error('Необхідно прийняти умови угоди')),
                         },
                     ]}
                     {...tailFormItemLayout}
                 >
                     <Checkbox>
-                        I have read the <a href="">agreement</a>
+                        Я прочитав(-ла) <a href="">Умови угоди</a>
                     </Checkbox>
                 </Form.Item>
                 <Form.Item {...tailFormItemLayout}>
                     <Button type="primary" htmlType="submit">
-                        Register
+                        Зареєструватися
                     </Button>
                 </Form.Item>
             </Form>

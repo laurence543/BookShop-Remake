@@ -27,12 +27,12 @@ class BookCreateForm extends React.Component {
     }
 /////////////////
     onFinish = (values) => {
-        console.log("Success:", values.title);
+        console.log("Успіх:", values.title);
         //Can directly call props here
     };
 
     onFinishFailed = (errorInfo) => {
-        console.log("Failed:", errorInfo);
+        console.log("Невдача:", errorInfo);
     };
 
     handleFormInit = (event, requestType) => {
@@ -43,7 +43,7 @@ class BookCreateForm extends React.Component {
         const isJPG = file.type === 'image/jpeg';
         const isPNG = file.type === 'image/png';
         if (!isJPG && !isPNG) {
-            message.error('You can only upload JPG or PNG file!');
+            message.error('Ви можете завантажити лише JPG або PNG файли!');
         }
         return false;
     }
@@ -125,7 +125,7 @@ class BookCreateForm extends React.Component {
                     )}
                     onFinishFailed={this.onFinishFailed}
                     labelCol={{
-                        span: 2,
+                        span: 3,
                     }}
 
                     wrapperCol={{
@@ -133,24 +133,24 @@ class BookCreateForm extends React.Component {
                     }}
 
                 >
-                    <Form.Item label="Title" id='title' name="title" required>
-                        <Input name="title" placeholder="Put a title here"/>
+                    <Form.Item label="Назва книги" id='title' name="title" required>
+                        <Input name="title" placeholder="Введіть назву книги"/>
                     </Form.Item>
-                    <Form.Item label="Author" id='author' name="author" required>
-                        <Input name="author" placeholder="Put an author here"/>
+                    <Form.Item label="Автор" id='author' name="author" required>
+                        <Input name="author" placeholder="Введіть ім'я автора книги"/>
                     </Form.Item>
-                    <Form.Item label="Description" id='description' name="description" required>
-                        <Input name="description" placeholder="Put a description here"/>
+                    <Form.Item label="Опис" id='description' name="description" required>
+                        <Input name="description" placeholder="Введіть опис книги"/>
                     </Form.Item>
                     <Form.Item label="ISBN" id='isbn' name="isbn" required>
-                        <Input name="isbn" placeholder="Put an isbn here"/>
+                        <Input name="isbn" placeholder="Введіть ISBN книги"/>
                     </Form.Item>
-                    <Form.Item label="Genre" id='genre' name="genre" required>
+                    <Form.Item label="Жанр" id='genre' name="genre" required>
                         <Select
                             mode="multiple"
                             allowClear
                             style={{ width: '100%' }}
-                            placeholder="Please select genre"
+                            placeholder="Будь ласка, оберіть жанр книги"
                             onChange={this.handleChange}
                         >
                             {this.state.tags.map(tag => {
@@ -162,34 +162,34 @@ class BookCreateForm extends React.Component {
                             })}
                         </Select>
                     </Form.Item>
-                    <Form.Item label="Publish Year" id='publish_year' name="publish_year" required>
-                        <Input name="publish_year" placeholder="Put a year of publishing here"/>
+                    <Form.Item label="Рік видання" id='publish_year' name="publish_year" required>
+                        <Input name="publish_year" placeholder="Введіть рік видання книги"/>
                     </Form.Item>
-                    <Form.Item label="Number of Pages" id='number_of_pages' name="number_of_pages" required>
-                        <Input name="number_of_pages" placeholder="Put a number of pages"/>
+                    <Form.Item label="Кількість сторінок" id='number_of_pages' name="number_of_pages" required>
+                        <Input name="number_of_pages" placeholder="Введіть кількість сторінок книги"/>
                     </Form.Item>
-                    <Form.Item label="Publisher" id='publisher' name="publisher" required>
-                        <Input name="publisher" placeholder="Put a publisher here"/>
+                    <Form.Item label="Видавництво" id='publisher' name="publisher" required>
+                        <Input name="publisher" placeholder="Введіть назву видавництва книги"/>
                     </Form.Item>
-                    <Form.Item label="Language" id='language' name="language" required>
-                        <Input name="language" placeholder="Put a book language here"/>
+                    <Form.Item label="Мова" id='language' name="language" required>
+                        <Input name="language" placeholder="Введіть мову книги"/>
                     </Form.Item>
-                    <Form.Item label="Cover" id='cover' name="cover" required>
-                        <Input name="cover" placeholder="Put a cover type here"/>
+                    <Form.Item label="Обкладинка" id='cover' name="cover" required>
+                        <Input name="cover" placeholder="Введіть тип обкладинки книги"/>
                     </Form.Item>
-                    <Form.Item label="Stock" id='stock' name="stock" required>
-                        <Input name="stock" placeholder="Put a stock here"/>
+                    <Form.Item label="Кількість на складі" id='stock' name="stock" required>
+                        <Input name="stock" placeholder="Введіть кількість примірників на складі"/>
                     </Form.Item>
-                    <Form.Item label="Price" id='price' name="price" required>
-                        <Input name="price" placeholder="Put a price here"/>
+                    <Form.Item label="Ціна" id='price' name="price" required>
+                        <Input name="price" placeholder="Введіть ціну"/>
                     </Form.Item>
-                    <Form.Item label="Image Root" id='image_root' name="image_root">
-                        <Input name="image_root" placeholder="Image Root" disabled/>
+                    <Form.Item label="Шлях зображення" id='image_root' name="image_root">
+                        <Input name="image_root" placeholder="Шлях (рут) зображення" disabled/>
                     </Form.Item>
-                    <Form.Item label="Image" id='image' name="image">
+                    <Form.Item label="Зображення" id='image' name="image">
                         <Upload
                             className="img-upload"
-                            label="Image"
+                            label="Зображення книги"
                             listType="picture"
                             beforeUpload={this.beforeUploadImageHandler}
                             maxCount={1}

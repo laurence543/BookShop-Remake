@@ -68,7 +68,7 @@ class BookList extends React.Component {
                             this.props.isStaff
                             ?
                             <NavLink to='/books/create'>
-                                <Button type="primary" htmlType="button">Create Book</Button>
+                                <Button type="primary" htmlType="button">Створити книгу</Button>
                             </NavLink>
                             :
                             <></>
