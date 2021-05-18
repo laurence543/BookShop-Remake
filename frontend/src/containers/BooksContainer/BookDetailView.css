@@ -1,0 +1,9 @@
+.card-detail-info-wrapper {
+    display: flex;
+}
+.book-image-wrapper {
+    text-align: right;
+}
+img {
+    width: 200px;
+}

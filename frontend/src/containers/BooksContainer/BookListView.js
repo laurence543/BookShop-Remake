@@ -3,8 +3,9 @@ import axios from "axios";
 import {connect} from "react-redux";
 import {Button, Menu, Space, Input, AutoComplete} from 'antd';
 import {NavLink} from 'react-router-dom';
-import Book from "../../components/Book/Book";
+import BookBriefInfo from "../../components/BookBriefInfo/BookBriefInfo";
 import BookSearchAutoComplete from "../../components/BookSearchAutoComplete/BookSearchAutoComplete";
+import './BookListView.css';
 
 class BookList extends React.Component {
 
@@ -68,12 +69,16 @@ class BookList extends React.Component {
                             this.props.isStaff
                             ?
                             <NavLink to='/books/create'>
-                                <Button type="primary" htmlType="button">Створити книгу</Button>
+                                <Button
+                                    type="primary"
+                                    htmlType="button"
+                                    className="book-create-button"
+                                >Створити книгу</Button>
                             </NavLink>
                             :
                             <></>
                         }
-                        <Book data={this.state.books}/>
+                        <BookBriefInfo data={this.state.books}/>
                     </div>
                 </div>
             </>

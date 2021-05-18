@@ -2,16 +2,28 @@ import React from "react";
 import axios from "axios";
 import {connect} from "react-redux";
 import Book from "../../components/Book/Book";
-import {Card, Button} from "antd";
+import {Card, Button, Descriptions} from "antd";
+import {ShoppingCartOutlined} from '@ant-design/icons';
 import BookCreateForm from "../../components/BookCreateForm/BookCreateForm";
+import './BookDetailView.css';
+import { addToCart } from "../../store/actions/cart";
+
+
 
 class BookDetail extends React.Component {
     state = {
-        book: {}
+        book: [],
+        genre: [],
     };
 
     componentDidMount() {
         const bookID = this.props.match.params.bookID;
+        axios.get(`http://127.0.0.1:8000/books/api-genres`).then(res => {
+            this.setState({
+                genre: res.data
+            });
+            console.log(res.data);
+        });
         axios.get(`http://127.0.0.1:8000/books/api/${bookID}`).then(res => {
             this.setState({
                 book: res.data
@@ -27,12 +39,50 @@ class BookDetail extends React.Component {
         this.forceUpdate();
     }
 
+    handleGenre = (genres) => {
+        this.state?.book?.genre?.forEach((el, index) => {
+            if (this.state.book.genre[index] = this.state.genre[el - 1].id) {
+                this.state.book.genre[index] = this.state.genre[el - 1].genre;
+                console.log(this.state.book.genre[index]);
+            }
+        });
+        //console.log(genres);
+        //return (this.state?.book?.genre?.join('; '));
+        return (this.state?.book?.genre?.map(g => <p>{g};</p>));
+    }
+
     render() {
         return (
             <div>
-                <Card title={this.state.book.title}>
-                    <p>{this.state.book.description}</p>
-                </Card>
+                <Descriptions
+                    title={this.state.book.title}
+                    bordered
+                >
+                    <Descriptions.Item label="Про книгу:">{this.state.book.description}</Descriptions.Item>
+                    <Descriptions.Item >
+                        <img src={this.state.book.image} alt={this.state.book.title} />
+                    </Descriptions.Item>
+                </Descriptions>
+
+                <Descriptions
+                    bordered
+                    layout="vertical"
+                >
+                    <Descriptions.Item label="Видавництво:">{this.state.book.publisher}</Descriptions.Item>
+
+                    <Descriptions.Item label="Тип обкладинки:">{this.state.book.cover}</Descriptions.Item>
+                    <Descriptions.Item label="ISBN:">{this.state.book.isbn}</Descriptions.Item>
+                    <Descriptions.Item label="Рік видання:">{this.state.book.publish_year}</Descriptions.Item>
+                    <Descriptions.Item label="Мова:">{this.state.book.language}</Descriptions.Item>
+                    <Descriptions.Item label="Кількість сторінок:">{this.state.book.number_of_pages}</Descriptions.Item>
+                    <Descriptions.Item label="Жанри:">{this.handleGenre()}</Descriptions.Item>
+                    <Descriptions.Item label="Ціна:"><h1><b>{this.state.book.price}</b></h1></Descriptions.Item>
+                </Descriptions>
+                <br/>
+                    <button
+                        className="add-to-cart-button"
+                        onClick={() => this.props.addToCart(this.state.book)}
+                    >Додати в кошик <ShoppingCartOutlined/></button>
                     {
                         this.props.isStaff
                         ?
@@ -61,4 +111,4 @@ const mapStateToProps = state => {
         isStaff: state.auth.isStaff === 'True'
     }
 }
-export default connect(mapStateToProps)(BookDetail);
+export default connect(mapStateToProps, {addToCart})(BookDetail);
