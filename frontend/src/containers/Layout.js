@@ -64,8 +64,7 @@ class CustomLayout extends React.Component {
                 </Header>
                 <Content style={{padding: '0 50px'}}>
                     <Breadcrumb style={{margin: '16px 0'}}>
-                        <Breadcrumb.Item><Link to="/">Головна</Link></Breadcrumb.Item>
-                        <Breadcrumb.Item><Link to="/books">Каталог</Link></Breadcrumb.Item>
+                        <Breadcrumb.Item>{this.props.location.pathname}</Breadcrumb.Item>
                     </Breadcrumb>
                     <div style={{background: '#fff', padding: 24, minHeight: 280}}>
                         {this.props.children}
