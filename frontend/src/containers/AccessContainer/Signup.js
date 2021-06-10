@@ -237,29 +237,6 @@ class RegistrationForm extends React.Component {
                         addonBefore="+380"
                     />
                 </Form.Item>
-
-                <Form.Item label="Капча" extra="Ми маємо переконатися, що ви не робот.">
-                    <Row gutter={8}>
-                        <Col span={12}>
-                            <Form.Item
-                                name="captcha"
-                                noStyle
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: 'Будь ласка, введіть отриману капчу!',
-                                    },
-                                ]}
-                            >
-                                <Input/>
-                            </Form.Item>
-                        </Col>
-                        <Col span={12}>
-                            <Button>Отримати капчу</Button>
-                        </Col>
-                    </Row>
-                </Form.Item>
-
                 <Form.Item
                     name="agreement"
                     valuePropName="checked"
