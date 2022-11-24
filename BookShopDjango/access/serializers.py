@@ -1,7 +1,10 @@
 from rest_framework import serializers
 from access.models import User, Order, Order_content
 from dj_rest_auth.models import TokenModel
-from django.utils.translation import ugettext_lazy as _
+try:
+    from django.utils.translation import ugettext_lazy as _
+except ImportError:
+    from django.utils.translation import gettext_lazy as _
 from allauth.account import app_settings as allauth_settings
 from allauth.account.adapter import get_adapter
 from allauth.account.utils import setup_user_email
