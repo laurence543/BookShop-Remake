@@ -71,7 +71,7 @@ class CustomLayout extends React.Component {
                     </div>
                 </Content>
                 <Footer style={{textAlign: 'center'}}>
-                    BookShop © 2021
+                    BookShop © 2022
                 </Footer>
             </Layout>
         );
